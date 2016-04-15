@@ -4,13 +4,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour {
-    public Button soundButton;
-    public Sprite sound, silent;
-    GameObject camera;
-
 
     void Start() {
-        camera = GameObject.Find("Main Camera");
+
     }
 
     // Update is called once per frame
@@ -20,7 +16,12 @@ public class ButtonHandler : MonoBehaviour {
 
     public void Play()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level Selector");
+    }
+
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void Return()
@@ -33,20 +34,4 @@ public class ButtonHandler : MonoBehaviour {
         Application.Quit();
     }
 
-    public void SetSound()
-    {
-        if(PlayerPrefs.GetString("Sound") == "On")
-        {
-            PlayerPrefs.SetString("Sound", "Off");
-            soundButton.image.overrideSprite = silent;
-            camera.GetComponent<AudioSource>().mute = true;
-
-        }
-        else if (PlayerPrefs.GetString("Sound") == "Off")
-        {
-            PlayerPrefs.SetString("Sound", "On");
-            soundButton.image.overrideSprite = sound;
-            camera.GetComponent<AudioSource>().mute = false;
-        }
-    }
 }
