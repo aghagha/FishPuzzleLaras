@@ -3,56 +3,19 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour {
-    public GameObject clothes1, clothes2, clothes3, clothes4;
-    GameObject[] clothes;
     GameObject camera;
-    bool[] occupied;
-    public Vector3[] pos;
+    GameObject popUp;
+    Animator anim;
+    public int counter;
     int random;
     
 	void Start () {
         CheckSound();
         camera = GameObject.Find("Main Camera");
-        clothes = new GameObject[4];
-        occupied = new bool[4] { false, false, false, false };
-
         random = Random.Range(0, 3);
-        clothes1.transform.position = pos[random];
-        occupied[random] = true;
 
-        random = Random.Range(0, 3);
-        if (occupied[random])
-        {
-            while (occupied[random])
-            {
-                random += 1; random %= 4;
-            }
-        }
-        clothes2.transform.position = pos[random];
-        occupied[random] = true;
-
-        random = Random.Range(0, 3);
-        if (occupied[random])
-        {
-            while (occupied[random])
-            {
-                random += 1; random %= 4;
-            }
-        }
-        clothes3.transform.position = pos[random];
-        occupied[random] = true;
-
-        random = Random.Range(0, 3);
-        if (occupied[random])
-        {
-            while (occupied[random])
-            {
-                random += 1; random %= 4;
-            }
-        }
-        clothes4.transform.position = pos[random];
-        occupied[random] = true;
-        
+        popUp = GameObject.Find("Canvas/Finish Screen");
+        anim = popUp.GetComponent<Animator>();
     }
 	
 	void Update () {
@@ -61,12 +24,22 @@ public class Level : MonoBehaviour {
         {
             SceneManager.LoadScene("MainMenu");
         }
+
+        if (counter == 0)
+        {
+            anim.SetBool("isFinish", true);
+        }
 	}
 
     public void NextLevel()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene("Level "+ nextSceneIndex);
+    }
+
+    public void IterCounter()
+    {
+        counter--;
     }
 
     void CheckSound()
