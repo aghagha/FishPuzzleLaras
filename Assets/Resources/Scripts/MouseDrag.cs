@@ -15,7 +15,7 @@ public class MouseDrag : MonoBehaviour {
     Animator anim;
 
 	void Start () {
-        Tresshold(0.15f, 0.11f);
+        Tresshold(0.2f, 0.15f);
 
         originalPos = transform.position;
 
@@ -51,7 +51,7 @@ public class MouseDrag : MonoBehaviour {
             transform.position = truePos;
             level.IterCounter();
             anim.SetBool("isTrue", true);
-            GetComponent<MouseDrag>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
         else
         {
