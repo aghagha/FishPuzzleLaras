@@ -36,7 +36,9 @@ public class ButtonHandler : MonoBehaviour {
         string currentLevel;
         now = SceneManager.GetActiveScene();
         currentLevel = now.name.Split(' ')[1];
-        SceneManager.LoadScene("Level " + (System.Convert.ToInt32(currentLevel) + 1).ToString() );
+        if (System.Convert.ToInt32(currentLevel) < 5)
+            SceneManager.LoadScene("Level " + (System.Convert.ToInt32(currentLevel) + 1).ToString());
+        else SceneManager.LoadScene("Level Selector");
     }
 
     public void HowToPlay()
