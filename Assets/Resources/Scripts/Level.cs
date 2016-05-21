@@ -8,6 +8,7 @@ public class Level : MonoBehaviour {
     Animator anim;
     public int counter;
     int random;
+    AudioSource sfx;
     
 	void Start () {
         CheckSound();
@@ -16,6 +17,7 @@ public class Level : MonoBehaviour {
 
         popUp = GameObject.Find("Canvas/Finish Screen");
         anim = popUp.GetComponent<Animator>();
+        sfx = GameObject.Find("SFX").GetComponent<AudioSource>();
     }
 	
 	void Update () {
@@ -39,6 +41,7 @@ public class Level : MonoBehaviour {
 
     public void IterCounter()
     {
+        sfx.Play();
         counter--;
     }
 

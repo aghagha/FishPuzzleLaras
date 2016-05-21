@@ -15,14 +15,14 @@ public class MouseDrag : MonoBehaviour {
     Animator anim;
 
 	void Start () {
-        Tresshold(0.2f, 0.15f);
+        Tresshold(0.3f, 0.3f);
 
         originalPos = transform.position;
 
         camera = GameObject.Find("Main Camera");
         level = camera.GetComponent<Level>();
         anim = GetComponent<Animator>();
-
+        
 	}
 	
 	// Update is called once per frame
